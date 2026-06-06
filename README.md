@@ -42,29 +42,25 @@ An automated, serverless, **$0-cost educational engine** engineered for postgrad
 [Auto-Commit: progress.json & lessons/*.md] ──► (Saves History to Git)
 ```
 
-# Navigate inside your workspace folder directory
-
-cd Physio-Learning
-
-# Setup a clean local python isolated execution virtual sandbox
+## Setup a clean local python isolated execution virtual sandbox
 
 python -m venv .venv
 
-# Activate your newly configured isolated sandbox environment
+## Activate your newly configured isolated sandbox environment
 
-# On macOS/Linux:
+## On macOS/Linux:
 
 source .venv/bin/activate
 
-# On Windows (PowerShell):
+## On Windows (PowerShell):
 
 .venv\Scripts\Activate.ps1
 
-# On Windows (Command Prompt):
+## On Windows (Command Prompt):
 
 .venv\Scripts\activate.bat
 
-# Install core parsing and translation dependencies packages
+## Install core parsing and translation dependencies packages
 
 pip install -r requirements.txt
 
