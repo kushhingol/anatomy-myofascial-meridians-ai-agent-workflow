@@ -1,0 +1,30 @@
+# Environment files (Contains private API keys and SMTP credentials)
+.env
+.env.local
+.env.*.local
+
+# Python caches and bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDE and Editor-specific configurations
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS-specific system files
+.DS_Store
+Thumbs.db
+
+# Optional: Large asset files 
+# (If you prefer to keep the textbook PDF off GitHub to save space, 
+# uncomment the line below, but remember to manually upload it to your running environment)
+# Anatomy_Trains_Myofascial_Meridians_for_Manual_&_Movement_Therapists.pdf
