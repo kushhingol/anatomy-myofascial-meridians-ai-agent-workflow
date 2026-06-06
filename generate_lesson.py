@@ -185,11 +185,20 @@ def send_email(subject: str, html_body: str) -> bool:
     if missing:
         print(f"Email not sent. Missing environment variables: {', '.join(missing)}")
         return False
+    
+    # 1. Parse and sanitize the comma-separated string into a clean list of strings
+    raw_mail_to = os.environ["MAIL_TO"]
+    to_addresses = [email.strip() for email in raw_mail_to.split(",") if email.strip()]
+    
+    if not to_addresses:
+        print("Email not sent. MAIL_TO does not contain any valid email addresses.")
+        return False
 
     msg = EmailMessage()
     msg["Subject"] = subject
     msg["From"] = os.environ["MAIL_FROM"]
-    msg["To"] = os.environ["MAIL_TO"]
+    # 2. Join them back with a comma for a clean header display in the email client
+    msg["To"] = ", ".join(to_addresses)
     msg.add_alternative(html_body, subtype="html")
 
     host = os.environ["SMTP_HOST"]
@@ -198,7 +207,7 @@ def send_email(subject: str, html_body: str) -> bool:
         smtp.starttls()
         smtp.login(os.environ["SMTP_USER"], os.environ["SMTP_PASS"])
         smtp.send_message(msg)
-    print(f"Email sent to {os.environ['MAIL_TO']}")
+    print(f"Email sent to {', '.join(to_addresses)}")
     return True
 
 
