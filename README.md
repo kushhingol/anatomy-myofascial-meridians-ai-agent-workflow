@@ -46,23 +46,13 @@ An automated, serverless, **$0-cost educational engine** engineered for postgrad
 
 python -m venv .venv
 
-## Activate your newly configured isolated sandbox environment
-
-## On macOS/Linux:
-
-source .venv/bin/activate
-
-## On Windows (PowerShell):
-
-.venv\Scripts\Activate.ps1
-
-## On Windows (Command Prompt):
-
-.venv\Scripts\activate.bat
-
 ## Install core parsing and translation dependencies packages
 
 pip install -r requirements.txt
+
+## Run Locally
+
+python generate_lesson.py --send
 
 ## 🚀 Let's Connect
 
