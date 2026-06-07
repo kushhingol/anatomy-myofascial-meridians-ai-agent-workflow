@@ -35,7 +35,7 @@ jobs:
           MAIL_TO: ${{ secrets.MAIL_TO }}
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
-        run: python generate_lesson.py
+        run: python generate_lesson.py --send
 
       - name: Commit Progress and Documentation Updates
         run: |
