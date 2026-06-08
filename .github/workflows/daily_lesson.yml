@@ -1,8 +1,6 @@
 name: Generate Daily MPT Anatomy Trains Lesson
 
 on:
-  schedule:
-    - cron: "0 3 */2 * *" # Triggers daily at 08:30 IST
   workflow_dispatch: # Allows troubleshooting manual override via UI execution button
 
 jobs:
