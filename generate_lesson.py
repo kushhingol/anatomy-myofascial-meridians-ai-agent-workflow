@@ -226,6 +226,18 @@ def main():
     weak_topics = progress.get("weakTopics", [])
     target_minutes = calculate_adaptive_time(len(completed_lessons))
     
+    # Initialize startDate if not present
+    if "startDate" not in progress:
+        progress["startDate"] = datetime.now().strftime("%Y-%m-%d")
+    
+    # Calculate daysElapsed from start date
+    start_date = datetime.strptime(progress["startDate"], "%Y-%m-%d").date()
+    today = datetime.now().date()
+    days_elapsed = (today - start_date).days
+    
+    # Calculate currentPhase based on daysElapsed (Phase 1: days 0-6, Phase 2: days 7-13, etc.)
+    current_phase = (days_elapsed // 7) + 1
+    
     pdf_path = "Anatomy_Trains_Myofascial_Meridians_for_Manual_&_Movement_Therapists.pdf"
     book_file = client.files.upload(file=pdf_path)
 
@@ -300,9 +312,10 @@ def main():
 
     # Persist permanent progression telemetry adjustments
     progress["completedLessons"].append(topic_name)
-    progress["daysElapsed"] += 1
+    progress["daysElapsed"] = days_elapsed
+    progress["currentPhase"] = current_phase
     with open("progress.json", "w") as f:
-        json.dump(progress, indent=2, fp=f)
+        json.dump(progress, f, indent=2)
 
     client.files.delete(name=book_file.name)
     print("Workflow processing tasks resolved cleanly.")
